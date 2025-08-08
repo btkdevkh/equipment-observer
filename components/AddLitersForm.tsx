@@ -1,21 +1,22 @@
 import fs from "fs";
+import path from "path";
 
 const AddLitersForm = () => {
   const createLiter = async (formData: FormData) => {
     "use server";
 
     const dataLiters = formData.get("nb-liters");
-    console.log("dataLiters : ", dataLiters);
+
+    const filePath = path.resolve(process.cwd(), "data.txt");
 
     // Get exists Nb liters
-    const data = fs.readFileSync("./data.txt", { encoding: "utf8" });
-    console.log("data : ", data);
+    const data = fs.readFileSync(filePath, { encoding: "utf8" });
 
     const finalData = Number(data) + Number(dataLiters);
-    fs.writeFileSync("./data.txt", finalData.toString());
+    fs.writeFileSync(filePath, finalData.toString());
 
     // "Refresh" by re-reading the file
-    fs.readFile("./data.txt", "utf8", (err, data) => {
+    fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
         console.error(err);
       }

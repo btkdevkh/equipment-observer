@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { IoWaterOutline } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
 import { GiDuration } from "react-icons/gi";
@@ -10,7 +11,8 @@ import AddLitersForm from "./AddLitersForm";
 import { IoMdAdd } from "react-icons/io";
 
 const WeeplowStatus = () => {
-  const liters = fs.readFileSync("./data.txt", { encoding: "utf8" });
+  const filePath = path.resolve(process.cwd(), "data.txt");
+  const liters = fs.readFileSync(filePath, { encoding: "utf8" });
 
   return (
     <>
