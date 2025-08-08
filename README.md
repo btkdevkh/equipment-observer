@@ -6,7 +6,7 @@
 
 ## Info
 
-Cette application n'est pas liée à une base de données ou quoi que ce soit, elle se base sur les modules natifs de Node.js (fs) pour la persistance des données. Si vous voulez que les données soient persistées, il faudra une base de données quelque part.
+Cette application n'est pas liée à une base de données ou quoi que ce soit, elle se base sur les modules natifs de Node.js (fs) pour la persistance des données. Si vous voulez que les données soient persistées du coté serverless, il faudra une base de données quelque part.
 
 Elle peut être utilisée sur un vieil ordinateur et afficher l'application en plein écran dans un environnement local en Node.js.
 
@@ -15,6 +15,11 @@ Elle peut être utilisée sur un vieil ordinateur et afficher l'application en p
 Cette application permet de suivre en temps réel l'état de votre système de filtration d'eau par gravité. Elle fournit des informations détaillées sur la consommation d'eau, la capacité restante, ainsi que les dates importantes liées à l'entretien du système.
 
 ---
+
+## L'utilisation
+
+Pour utiliser l'App, il suffit d'avoir node.js installée sur votre machine.
+Créer un fichier `data.txt` à la raçine du projet.
 
 ## Fonctionnalités principales
 
