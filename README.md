@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weeplow Neptune - Suivi de votre système de filtration d'eau par gravité
 
-## Getting Started
+![Weeplow Neptune](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app-visual.png?raw=true)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Description
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cette application permet de suivre en temps réel l'état de votre système de filtration d'eau par gravité. Elle fournit des informations détaillées sur la consommation d'eau, la capacité restante, ainsi que les dates importantes liées à l'entretien du système.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Fonctionnalités principales
 
-## Learn More
+- **Suivi de la consommation d'eau** : Visualisez la quantité d'eau déjà consommée en litres, avec possibilité d'ajouter des volumes consommés via l'interface.
+- **Capacité maximale et restante** : Connaissez la capacité maximale du système (exemple : 22000 litres) et la capacité restante disponible.
+- **Gestion des dates d'entretien** :
+  - Date d'acquisition et date de mise en service.
+  - Dates prévues pour le changement des filtres.
+  - Dates pour le nettoyage des filtres et des cuves.
+  - Alerte du nombre de jours restants avant nettoyage des cuves.
+- **État général du système** : Indication claire de l'état (ex. : Ok) pour une tranquillité d'esprit.
+- **Interface utilisateur simple et intuitive** avec une présentation claire des données.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Exemple d'utilisation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+L'application affiche des informations telles que :
 
-## Deploy on Vercel
+- Modèle du système
+- Date d'acquisition
+- Date de mise en service
+- Capacité max
+- Volume d'eau déjà consommé
+- Capacité restante
+- Dates d'entretien prévues pour les filtres et le nettoyage des cuves
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technologies utilisées
+
+- Interface web responsive (PWA, Next.js/Node.js, Tailwind)
+- Gestion des données en temps réel pour le suivi des consommations et de l’entretien
+
+---
+
+## Contact / Support
+
+Pour plus d'informations, visitez le site officiel : [weeplow.com](https://weeplow.com)

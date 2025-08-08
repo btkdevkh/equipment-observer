@@ -1,0 +1,19 @@
+{
+  "name": "Weeplow Gravity Suivi",
+  "short_name": "Weeplow Gravity",
+  "icons": [
+    {
+      "src": "android/android-launchericon-192-192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "android/android-launchericon-512-512.png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#FFFFFF",
+  "background_color": "#FFFFFF",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
