@@ -1,6 +1,7 @@
 # Weeplow Neptune - Suivi de votre système de filtration d'eau par gravité
 
-![Weeplow Neptune](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app-screenshot.png?raw=true)
+![Weeplow Neptune mobile](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app-screenshot.png?raw=true)
+![Weeplow Neptune tablet](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app-fullscreen.png?raw=true)
 
 ---
 

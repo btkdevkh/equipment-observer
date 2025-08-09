@@ -5,7 +5,7 @@ type HeadingTitleProps = {
 const HeadingTitle = ({ title }: HeadingTitleProps) => {
   return (
     <>
-      <h2 className="text-xl text-center">{title}</h2>
+      <h2 className="text-2xl md:text-5xl text-center">{title}.</h2>
     </>
   );
 };

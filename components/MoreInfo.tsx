@@ -4,7 +4,7 @@ const MoreInfo = () => {
   return (
     <>
       <h2>
-        FAQ, visitez :{" "}
+        FAQ / visitez :{" "}
         <Link
           className="text-[#37436a]"
           href="https://weeplow.com/"

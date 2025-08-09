@@ -38,13 +38,13 @@ const AddLitersForm = () => {
           name="nb-liters"
           id="nb-liters"
           placeholder="Ajouter (L)"
-          className="w-full px-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
+          className="w-full px-2 md:py-1 border border-[#37436a] rounded outline-0"
           min={1}
         />
         <input
           type="submit"
           value="Valider"
-          className="bg-green-700 px-2 rounded text-sm font-semibold cursor-pointer"
+          className="bg-green-700 px-2 md:px-7 rounded text-sm md:text-2xl font-semibold cursor-pointer"
         />
       </form>
     </>
