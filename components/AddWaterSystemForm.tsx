@@ -67,7 +67,7 @@ const AddWaterSystemForm = () => {
             type="text"
             name="model-name"
             placeholder="Nom du model"
-            className="p-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
+            className="p-2 border border-[#37436a] rounded outline-0"
           />
         </div>
         <div className="flex flex-col text-gray-400">
@@ -77,7 +77,7 @@ const AddWaterSystemForm = () => {
           <input
             type="date"
             name="buy-date"
-            className="p-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
+            className="p-2 border border-[#37436a] rounded outline-0"
           />
         </div>
         <div className="flex flex-col text-gray-400">
@@ -87,7 +87,7 @@ const AddWaterSystemForm = () => {
           <input
             type="date"
             name="put-into-service-date"
-            className="p-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
+            className="p-2 border border-[#37436a] rounded outline-0"
           />
         </div>
         <div className="flex flex-col text-gray-400">
@@ -99,7 +99,7 @@ const AddWaterSystemForm = () => {
             type="number"
             name="max-capacity-filters"
             placeholder="Capacité max des filtres en litres"
-            className="p-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
+            className="p-2 border border-[#37436a] rounded outline-0"
           />
         </div>
 
