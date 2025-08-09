@@ -5,6 +5,7 @@ import {
   getNextChangeFiltersDate,
   getNextCleanFiltersDate,
 } from "./WeeplowStatus";
+import { revalidatePath } from "next/cache";
 
 const AddWaterSystemForm = () => {
   const createWeeplow = async (formData: FormData) => {
@@ -51,6 +52,8 @@ const AddWaterSystemForm = () => {
         console.error(err);
       }
     });
+
+    revalidatePath("/");
   };
 
   return (

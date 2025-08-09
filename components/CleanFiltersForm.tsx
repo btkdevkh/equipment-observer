@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { IWeeplow } from "@/types/Weeplow";
 import { getNextCleanFiltersDate } from "./WeeplowStatus";
+import { revalidatePath } from "next/cache";
 
 type CleanFiltersFormProps = {
   nextCleanFiltersDate?: string;
@@ -37,6 +38,8 @@ const CleanFiltersForm = ({ nextCleanFiltersDate }: CleanFiltersFormProps) => {
         console.error(err);
       }
     });
+
+    revalidatePath("/");
   };
 
   return (
