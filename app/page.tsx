@@ -13,7 +13,7 @@ export default function Home() {
   const weeplow = JSON.parse(jsonData) as IWeeplow;
 
   return (
-    <div className="max-w-[480px] mx-auto">
+    <div className="max-w-[1024px] mx-auto">
       {!weeplow.id ? (
         <>
           {/* Title */}
@@ -36,7 +36,7 @@ export default function Home() {
           <HeadingTitle title="L'état de votre système de filtration d'eau par gravité" />
           <br />
 
-          <div className="ml-1 flex flex-col gap-5">
+          <div className="ml-1 flex flex-col gap-7">
             {/* Status */}
             <WeeplowStatus />
 
@@ -46,7 +46,7 @@ export default function Home() {
               width={600}
               height={100}
               alt="Hero"
-              className="rounded"
+              className="rounded w-full md:hidden"
             />
 
             <div className="">
