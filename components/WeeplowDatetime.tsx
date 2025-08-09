@@ -33,7 +33,7 @@ const WeeplowDatetime = ({ initialDate }: WeeplowDatetimeProps) => {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center gap-2 text-xl md:text-4xl bg-gray-800 px-2">
+    <div className="w-full h-full flex items-center justify-center gap-2 bg-gray-800 px-2">
       <div className="">{getCurrentDate().todayDate}</div>
       <div className="text-yellow-400">{getCurrentDate().hhmmss}</div>
     </div>

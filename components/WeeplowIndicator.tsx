@@ -1,5 +1,6 @@
 import { IWeeplow } from "@/types/Weeplow";
-import { MdHealthAndSafety } from "react-icons/md";
+import { MdOutlineMoodBad } from "react-icons/md";
+import { MdOutlineMood } from "react-icons/md";
 
 type WeeplowIndicatorProps = {
   weeplow: IWeeplow;
@@ -15,11 +16,16 @@ const WeeplowIndicator = ({ weeplow, litersUsed }: WeeplowIndicatorProps) => {
         healthStatus ? "bg-orange-400" : "bg-green-700"
       }`}
     >
-      <div className="flex items-center gap-3">
-        <MdHealthAndSafety size={40} />
-        <p>
-          <strong>{healthStatus ? "PAS OK" : "OK"}</strong>
-        </p>
+      <div className="flex justify-center items-center">
+        {healthStatus ? (
+          <>
+            <MdOutlineMoodBad size={30} />
+          </>
+        ) : (
+          <>
+            <MdOutlineMood size={30} />
+          </>
+        )}
       </div>
     </div>
   );
