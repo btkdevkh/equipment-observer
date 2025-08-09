@@ -1,5 +1,6 @@
 import { IWeeplow } from "@/types/Weeplow";
 import fs from "fs";
+import { revalidatePath } from "next/cache";
 import path from "path";
 
 const AddLitersForm = () => {
@@ -25,6 +26,8 @@ const AddLitersForm = () => {
         console.error(err);
       }
     });
+
+    revalidatePath("/");
   };
 
   return (
