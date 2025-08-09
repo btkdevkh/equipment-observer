@@ -20,7 +20,7 @@ const WeeplowStatus = () => {
 
   return (
     <>
-      <div className="h-[3rem] md:h-[5rem] flex justify-around items-center gap-3">
+      <div className="h-[3rem] flex justify-around items-center gap-3 text-2xl">
         {/* Datetime */}
         <WeeplowDatetime initialDate={new Date().toISOString()} />
 
@@ -32,9 +32,9 @@ const WeeplowStatus = () => {
       </div>
 
       <div className="flex flex-col md:gap-6 border border-[#37436a] p-3">
-        <div className="flex flex-col gap-1 md:gap-2">
+        <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <IoWaterOutline size={30} />
+            <IoWaterOutline size={ICON_SIZE} />
             <p>
               Model :{" "}
               <em>
@@ -44,7 +44,7 @@ const WeeplowStatus = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <MdOutlineDateRange size={30} />
+            <MdOutlineDateRange size={ICON_SIZE} />
             <p>
               Date d&apos;acquisition :{" "}
               <em>
@@ -53,7 +53,7 @@ const WeeplowStatus = () => {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <MdOutlineDateRange size={30} />
+            <MdOutlineDateRange size={ICON_SIZE} />
             <p>
               Date de mise en service :{" "}
               <em>
@@ -63,9 +63,9 @@ const WeeplowStatus = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1 md:gap-2">
+        <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <TiHeartFullOutline size={30} />
+            <TiHeartFullOutline size={ICON_SIZE} />
             <p>
               Capacité filtres max :{" "}
               <em>
@@ -74,9 +74,9 @@ const WeeplowStatus = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-1 md:gap-3 border border-[#37436a] p-2 md:p-4 w-fit">
+          <div className="flex flex-col gap-1 border border-[#37436a] p-2 w-fit">
             <div className="flex items-center gap-3">
-              <RiDrinks2Fill size={25} />
+              <RiDrinks2Fill size={ICON_SIZE} />
               <p>
                 Déjà consommés :{" "}
                 <em>
@@ -86,13 +86,13 @@ const WeeplowStatus = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <IoMdAdd size={25} />
+              <IoMdAdd size={ICON_SIZE} />
               <AddLitersForm />
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <GiDuration size={30} />
+            <GiDuration size={ICON_SIZE} />
             <p>
               Capacité filtres restantes :{" "}
               <em>
@@ -108,9 +108,9 @@ const WeeplowStatus = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1 md:gap-2">
+        <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <MdOutlineDateRange size={30} />
+            <MdOutlineDateRange size={ICON_SIZE} />
             <p>
               Filtres à changer :{" "}
               <em>
@@ -135,7 +135,7 @@ const WeeplowStatus = () => {
             )}
           </div>
           <div className="flex items-center gap-3">
-            <MdOutlineDateRange size={30} />
+            <MdOutlineDateRange size={ICON_SIZE} />
             <p>
               Filtres à nettoyer :{" "}
               <em>
@@ -160,7 +160,7 @@ const WeeplowStatus = () => {
             )}
           </div>
           <div className="flex items-center gap-3">
-            <GiDuration size={30} />
+            <GiDuration size={ICON_SIZE} />
             <p>
               Cuves à nettoyer dans :{" "}
               <em>
@@ -186,6 +186,8 @@ const WeeplowStatus = () => {
 };
 
 export default WeeplowStatus;
+
+const ICON_SIZE = 25;
 
 const getNbLeftLiters = (nbLiterMax: number, nbLiterUsed: number = 0) => {
   return nbLiterMax - nbLiterUsed;
