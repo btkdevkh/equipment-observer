@@ -33,7 +33,7 @@ export default function Home() {
       ) : (
         <>
           {/* Title */}
-          <HeadingTitle title="L'état de votre système de filtration d'eau par gravité" />
+          <HeadingTitle title="« L'état de votre système de filtration d'eau par gravité. »" />
           <br />
 
           <div className="ml-1 flex flex-col gap-7">

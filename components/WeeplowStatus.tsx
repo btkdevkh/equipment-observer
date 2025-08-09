@@ -11,6 +11,7 @@ import AddLitersForm from "./AddLitersForm";
 import { IoMdAdd } from "react-icons/io";
 import ChangeFiltersForm from "./ChangeFiltersForm";
 import CleanFiltersForm from "./CleanFiltersForm";
+import WeeplowDatetime from "./WeeplowDatetime";
 
 const WeeplowStatus = () => {
   const filePath = path.resolve(process.cwd(), "data.json");
@@ -19,13 +20,18 @@ const WeeplowStatus = () => {
 
   return (
     <>
-      {/* Indicator */}
-      <WeeplowIndicator
-        weeplow={weeplow}
-        litersUsed={Number(weeplow.litersUsed ?? 0)}
-      />
+      <div className="h-[3rem] md:h-[5rem] flex justify-around items-center gap-3">
+        {/* Datetime */}
+        <WeeplowDatetime initialDate={new Date().toISOString()} />
 
-      <div className="flex flex-col md:gap-6 border border-[#37436a] p-3 rounded">
+        {/* Indicator */}
+        <WeeplowIndicator
+          weeplow={weeplow}
+          litersUsed={Number(weeplow.litersUsed ?? 0)}
+        />
+      </div>
+
+      <div className="flex flex-col md:gap-6 border border-[#37436a] p-3">
         <div className="flex flex-col gap-1 md:gap-2">
           <div className="flex items-center gap-3">
             <IoWaterOutline size={30} />
@@ -68,7 +74,7 @@ const WeeplowStatus = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-1 md:gap-3 border border-[#37436a] rounded p-2 md:p-4 w-fit">
+          <div className="flex flex-col gap-1 md:gap-3 border border-[#37436a] p-2 md:p-4 w-fit">
             <div className="flex items-center gap-3">
               <RiDrinks2Fill size={25} />
               <p>
@@ -192,7 +198,7 @@ const getCurrentMonthDays = (): number => {
   return new Date(year, month, 0).getDate();
 };
 
-const getCurrentDate = () => {
+export const getCurrentDate = () => {
   const now = new Date();
 
   // Formatage en JJ/MM/AAAA

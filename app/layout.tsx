@@ -66,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased md:text-4xl`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased md:text-2xl`}
       >
         <Navbar />
         <main className="max-w-7xl p-4 mx-auto">{children}</main>

@@ -1,5 +1,5 @@
 import { IWeeplow } from "@/types/Weeplow";
-import { GiHealthPotion } from "react-icons/gi";
+import { MdHealthAndSafety } from "react-icons/md";
 
 type WeeplowIndicatorProps = {
   weeplow: IWeeplow;
@@ -11,14 +11,14 @@ const WeeplowIndicator = ({ weeplow, litersUsed }: WeeplowIndicatorProps) => {
 
   return (
     <div
-      className={`md:p-5 flex justify-center items-center gap-3 ${
+      className={`w-full h-full flex justify-center items-center gap-3 ${
         healthStatus ? "bg-orange-400" : "bg-green-700"
-      } p-2 rounded`}
+      }`}
     >
       <div className="flex items-center gap-3">
-        <GiHealthPotion size={50} />
+        <MdHealthAndSafety size={40} />
         <p>
-          <strong>{healthStatus ? "Pas Ok" : "Ok"}</strong>
+          <strong>{healthStatus ? "PAS OK" : "OK"}</strong>
         </p>
       </div>
     </div>
