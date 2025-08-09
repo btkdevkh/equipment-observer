@@ -1,10 +1,13 @@
 export interface IWeeplow {
+  id?: number;
   model: string;
-  maxLifeSpanLiters: number;
+  maxCapacityFilters: number;
+  buyDate: string;
+  putIntoServiceDate: string;
+  nextCleanFiltersDate?: string;
+  nextCleanTanks?: number;
+  nextChangeFiltersDate?: string;
   litersUsed?: number;
-  dateAchat: string;
-  dateMiseEnService: string;
-  nextCleanFiltersDate: string;
-  nextCleanInox: number;
-  changingFiltersDate: string;
+  leftCapacityFilters?: number;
+  tanksCleaned?: boolean;
 }

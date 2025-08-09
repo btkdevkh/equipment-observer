@@ -1,9 +1,11 @@
-const HeadingTitle = () => {
+type HeadingTitleProps = {
+  title: string;
+};
+
+const HeadingTitle = ({ title }: HeadingTitleProps) => {
   return (
     <>
-      <h2 className="text-xl text-center">
-        L&apos;état de votre système de filtration d&apos;eau par gravité
-      </h2>
+      <h2 className="text-xl text-center">{title}</h2>
     </>
   );
 };

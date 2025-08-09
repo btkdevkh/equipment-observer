@@ -18,11 +18,11 @@ Cette application permet de suivre en temps réel l'état de votre système de f
 
 ## L'utilisation
 
-Pour utiliser l'App, il suffit d'avoir node.js installée sur votre machine.
-Créer un fichier `data.txt` à la raçine du projet.
+Pour utiliser cette application, il suffit d'avoir `Node.js` installé sur votre machine et créer un fichier `data.json` à la raçine du projet avec cette structure : `{ "id": null }`.
 
 ## Fonctionnalités principales
 
+- **Ajout de votre système de filtration d'eau à l'application** : Ajouter votre système de filtration d'eau à l'application dès l'acquisition pour le suivi et l'entretien.
 - **Suivi de la consommation d'eau** : Visualisez la quantité d'eau déjà consommée en litres, avec possibilité d'ajouter des volumes consommés via l'interface.
 - **Capacité maximale et restante** : Connaissez la capacité maximale du système (exemple : 22000 litres) et la capacité restante disponible.
 - **Gestion des dates d'entretien** :

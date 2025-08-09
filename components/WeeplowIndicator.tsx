@@ -7,7 +7,7 @@ type WeeplowIndicatorProps = {
 };
 
 const WeeplowIndicator = ({ weeplow, litersUsed }: WeeplowIndicatorProps) => {
-  const healthStatus = weeplow.maxLifeSpanLiters - litersUsed <= 0;
+  const healthStatus = weeplow.maxCapacityFilters - litersUsed <= 0;
 
   return (
     <div

@@ -1,20 +1,32 @@
-import { IWeeplow } from "@/types/Weeplow";
 import fs from "fs";
 import path from "path";
+import { IWeeplow } from "@/types/Weeplow";
+import { getNextCleanFiltersDate } from "./WeeplowStatus";
 
-const AddLitersForm = () => {
-  const createLiter = async (formData: FormData) => {
+type CleanFiltersFormProps = {
+  nextCleanFiltersDate?: string;
+};
+
+const CleanFiltersForm = ({ nextCleanFiltersDate }: CleanFiltersFormProps) => {
+  const cleanFilters = async (formData: FormData) => {
     "use server";
 
-    const nbLiters = formData.get("nb-liters");
+    const cleanFiltersDate = formData.get("clean-filters-date");
+
+    if (!cleanFiltersDate) {
+      return;
+    }
 
     // Get exists Nb liters
     const filePath = path.resolve(process.cwd(), "data.json");
     const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
     const weeplow = JSON.parse(jsonData) as IWeeplow;
 
-    const liters = Number(weeplow.litersUsed ?? 0) + Number(nbLiters);
-    weeplow.litersUsed = liters;
+    const lastCleanedFiltersDate = new Date(cleanFiltersDate.toString());
+
+    weeplow.nextCleanFiltersDate = getNextCleanFiltersDate(
+      lastCleanedFiltersDate
+    );
 
     // Update
     fs.writeFileSync(filePath, JSON.stringify(weeplow));
@@ -29,18 +41,17 @@ const AddLitersForm = () => {
 
   return (
     <>
-      <form action={createLiter} className="flex gap-2">
+      <form action={cleanFilters} className="flex gap-2">
         <input
-          type="number"
-          name="nb-liters"
-          id="nb-liters"
-          placeholder="Ajouter (L)"
+          type="hidden"
+          name="clean-filters-date"
+          value={nextCleanFiltersDate}
           className="w-full px-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
-          min={1}
         />
         <input
           type="submit"
           value="Valider"
+          title="À valider si les filtres ont été nettoyés"
           className="bg-green-700 px-2 rounded text-sm font-semibold cursor-pointer"
         />
       </form>
@@ -48,4 +59,4 @@ const AddLitersForm = () => {
   );
 };
 
-export default AddLitersForm;
+export default CleanFiltersForm;
