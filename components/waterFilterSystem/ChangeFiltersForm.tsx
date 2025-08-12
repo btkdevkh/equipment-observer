@@ -1,14 +1,16 @@
 import fs from "fs";
 import path from "path";
-import { IWeeplow } from "@/types/Weeplow";
-import { getNextChangeFiltersDate } from "./WeeplowStatus";
+import { Equipments, IEquipment } from "@/types/Equipment";
 import { revalidatePath } from "next/cache";
+import { getNextChangeFiltersDate } from "@/functions/functions";
 
 type ChangeFiltersFormProps = {
+  equipment: IEquipment;
   nextChangeFiltersDate?: string;
 };
 
 const ChangeFiltersForm = ({
+  equipment,
   nextChangeFiltersDate,
 }: ChangeFiltersFormProps) => {
   const changeFilters = async (formData: FormData) => {
@@ -23,24 +25,25 @@ const ChangeFiltersForm = ({
     // Get exists Nb liters
     const filePath = path.resolve(process.cwd(), "data.json");
     const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
-    const weeplow = JSON.parse(jsonData) as IWeeplow;
+    const equipments = JSON.parse(jsonData) as Equipments;
 
-    const lastChangedFiltersDate = new Date(changeFiltersDate.toString());
-
-    weeplow.nextChangeFiltersDate = getNextChangeFiltersDate(
-      lastChangedFiltersDate
-    );
-
-    // Update
-    fs.writeFileSync(filePath, JSON.stringify(weeplow));
-
-    // "Refresh" by re-reading the file
-    fs.readFile(filePath, "utf8", (err, data) => {
-      if (err) {
-        console.error(err);
+    // Find equipment
+    const mapEquipments = equipments.equipments.map((eqp) => {
+      if (equipment.maxCapacityFilters && eqp.id === equipment.id) {
+        const lastChangedFiltersDate = changeFiltersDate.toString();
+        eqp.nextChangeFiltersDate = getNextChangeFiltersDate(
+          lastChangedFiltersDate
+        );
       }
+
+      return eqp;
     });
 
+    const data: Equipments = { equipments: [] };
+    data.equipments = mapEquipments;
+
+    // Update by writting file
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
     revalidatePath("/");
   };
 
@@ -51,13 +54,13 @@ const ChangeFiltersForm = ({
           type="hidden"
           name="change-filters-date"
           value={nextChangeFiltersDate}
-          className="w-full px-2 border border-[#37436a] rounded outline-0 placeholder:text-sm"
+          className="w-full px-2 border border-[#37436a] outline-0 placeholder:text-sm"
         />
         <input
           type="submit"
           value="Valider"
           title="À valider si les filtres ont été changés"
-          className="bg-green-700 px-2 rounded text-sm font-semibold cursor-pointer"
+          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer"
         />
       </form>
     </>

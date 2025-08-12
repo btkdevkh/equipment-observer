@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-type WeeplowDatetimeProps = {
+type AppDatetimeProps = {
   initialDate: string;
 };
 
-const WeeplowDatetime = ({ initialDate }: WeeplowDatetimeProps) => {
+const AppDatetime = ({ initialDate }: AppDatetimeProps) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date(initialDate));
 
   useEffect(() => {
@@ -29,15 +29,16 @@ const WeeplowDatetime = ({ initialDate }: WeeplowDatetimeProps) => {
     return {
       todayDate: `${day}/${month}/${year}`,
       hhmmss: `${hh}:${mm}:${ss}`,
+      hhmm: `${hh}:${mm}`,
     };
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center gap-2 bg-gray-800 px-2">
-      <div className="">{getCurrentDate().todayDate}</div>
+    <div className="w-full h-full flex items-center justify-center gap-2 bg-gray-800 py-3 text-xl">
+      <div className="">Au {getCurrentDate().todayDate}, à</div>
       <div className="text-yellow-400">{getCurrentDate().hhmmss}</div>
     </div>
   );
 };
 
-export default WeeplowDatetime;
+export default AppDatetime;

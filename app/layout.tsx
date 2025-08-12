@@ -13,11 +13,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const APP_NAME = "Weeplow Gravity";
-const APP_DEFAULT_TITLE = "Weeplow Gravity Suivi";
+const APP_NAME = "Systems Tracker";
+const APP_DEFAULT_TITLE = "Systems Tracker";
 const APP_TITLE_TEMPLATE = "%s - PWA App";
-const APP_DESCRIPTION =
-  "L'util pour le suivi du système de filtration d'eau par gravité";
+const APP_DESCRIPTION = "L'util pour le suivi des systèmes";
 
 export const metadata: Metadata = {
   applicationName: APP_NAME,
