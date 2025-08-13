@@ -10,7 +10,7 @@ const Navbar = () => {
           height={200}
           alt="Logo"
           priority
-          className="md:w-[300px]"
+          className="md:w-[200px]"
         />
       </div>
     </>
