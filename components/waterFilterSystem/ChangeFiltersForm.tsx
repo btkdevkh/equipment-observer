@@ -54,13 +54,12 @@ const ChangeFiltersForm = ({
           type="hidden"
           name="change-filters-date"
           value={nextChangeFiltersDate}
-          className="w-full px-2 border border-[#37436a] outline-0 placeholder:text-sm"
         />
         <input
           type="submit"
           value="Valider"
           title="À valider si les filtres ont été changés"
-          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer"
+          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer rounded"
         />
       </form>
     </>

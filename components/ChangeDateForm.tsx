@@ -67,17 +67,12 @@ const ChangeDateForm = ({
   return (
     <>
       <form action={changeFilters} className="flex gap-2">
-        <input
-          type="hidden"
-          name="change-date"
-          value={nextChangeDate}
-          className="w-full px-2 border border-[#37436a] outline-0 placeholder:text-sm"
-        />
+        <input type="hidden" name="change-date" value={nextChangeDate} />
         <input
           type="submit"
           value="Valider"
           title="À valider si l'action a été fait"
-          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer"
+          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer rounded"
         />
       </form>
     </>

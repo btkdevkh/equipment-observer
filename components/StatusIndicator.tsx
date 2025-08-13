@@ -36,7 +36,7 @@ const StatusIndicator = ({ equipment }: StatusIndicatorProps) => {
 
   return (
     <div
-      className={`w-full h-full flex justify-center items-center gap-3 ${
+      className={`w-full h-full flex justify-center items-center gap-3 rounded ${
         healthStatus ? "bg-orange-400" : "bg-green-700"
       }`}
     >

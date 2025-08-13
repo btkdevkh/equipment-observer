@@ -141,7 +141,7 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
                     </em>
                   </p>
                 </div>
-                <div className="flex flex-col gap-1 border border-[#37436a] p-2 w-fit">
+                <div className="flex flex-col gap-1 border border-[#37436a] p-2 w-fit rounded">
                   <div className="flex items-center gap-3">
                     <RiDrinks2Fill size={ICON_SIZE} />
                     <p>
