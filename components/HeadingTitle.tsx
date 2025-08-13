@@ -1,11 +1,14 @@
 type HeadingTitleProps = {
   title: string;
+  supClass?: string;
 };
 
-const HeadingTitle = ({ title }: HeadingTitleProps) => {
+const HeadingTitle = ({ title, supClass }: HeadingTitleProps) => {
   return (
     <>
-      <h2 className="text-center text-2xl">{title}</h2>
+      <h2 className={`text-center text-2xl ${supClass ? supClass : ""}`}>
+        {title}
+      </h2>
     </>
   );
 };

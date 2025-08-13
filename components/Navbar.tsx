@@ -3,7 +3,6 @@ import Image from "next/image";
 const Navbar = () => {
   return (
     <>
-      <br />
       <div className="flex justify-center">
         <Image
           src="/robot.png"

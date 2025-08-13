@@ -54,13 +54,12 @@ const CleanFiltersForm = ({
           type="hidden"
           name="clean-filters-date"
           value={nextCleanFiltersDate}
-          className="w-full px-2 border border-[#37436a] outline-0 placeholder:text-sm"
         />
         <input
           type="submit"
           value="Valider"
           title="À valider si les filtres ont été nettoyés"
-          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer"
+          className="bg-green-700 px-2 text-sm font-semibold cursor-pointer rounded"
         />
       </form>
     </>

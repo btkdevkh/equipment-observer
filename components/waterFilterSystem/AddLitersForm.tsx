@@ -44,13 +44,13 @@ const AddLitersForm = ({ equipment }: AddLitersFormProps) => {
           name="nb-liters"
           id="nb-liters"
           placeholder="Ajouter (L)"
-          className="w-full p-1 border border-[#37436a] outline-0"
+          className="w-full px-2 border text-sm border-[#37436a] outline-0 rounded"
           min={1}
         />
         <input
           type="submit"
           value="Valider"
-          className="bg-green-700 px-2 md:px-3 font-semibold cursor-pointer"
+          className="bg-green-700 px-3 text-sm font-semibold cursor-pointer rounded"
         />
       </form>
     </>

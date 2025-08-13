@@ -48,7 +48,7 @@ export default function Home() {
   const sortedEquipmentsByDateStrDESC = sortedDateStrDESC(data.equipments);
 
   return (
-    <div className="max-w-[1024px] mx-auto">
+    <div className="max-w-full mx-auto">
       <>
         {/* Title */}
         <HeadingTitle title="« L'état de votre systèmes / appareils. »" />
@@ -59,7 +59,7 @@ export default function Home() {
           <AppDatetime initialDate={new Date().toISOString()} />
 
           {/* Status */}
-          <div className="flex flex-col md:flex-row gap-3">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {sortedEquipmentsByDateStrDESC.map((equipment, index) => (
               <Equipment
                 key={equipment.id}
@@ -71,7 +71,7 @@ export default function Home() {
 
           <Link
             href="/create"
-            className="border-2 border-[#7FEBF8] bg-[#1a3b4f] py-2 px-5 w-fit font-bold"
+            className="md:w-fit text-center border-2 border-[#7FEBF8] bg-[#1a3b4f] py-2 px-4 font-bold rounded"
           >
             Ajouter un système / appareil
           </Link>
