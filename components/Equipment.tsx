@@ -15,12 +15,15 @@ import {
   getCurrentDate,
   getNbLeftLiters,
   getNextCleanTanks,
+  parseDateFR,
 } from "@/functions/functions";
 
 type EquipmentProps = {
   equipment: IEquipment;
   index: number;
 };
+
+const ICON_SIZE = 25;
 
 const Equipment = ({ equipment, index }: EquipmentProps) => {
   return (
@@ -74,7 +77,8 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
               <p>
                 Date de détartrage :{" "}
                 <em>
-                  {equipment.nextDescalingDate === getCurrentDate() ? (
+                  {parseDateFR(equipment.nextDescalingDate) <=
+                  parseDateFR(getCurrentDate()) ? (
                     <>
                       <strong className="text-orange-400">
                         Machine à détartrer!
@@ -88,7 +92,8 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
                 </em>
               </p>
 
-              {equipment.nextDescalingDate === getCurrentDate() && (
+              {parseDateFR(equipment.nextDescalingDate) <=
+                parseDateFR(getCurrentDate()) && (
                 <ChangeDateForm
                   equipment={equipment}
                   nextChangeDate={equipment.nextDescalingDate}
@@ -105,7 +110,8 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
               <p>
                 L&apos;huile à changer :{" "}
                 <em>
-                  {equipment.nextChangeOilDate === getCurrentDate() ? (
+                  {parseDateFR(equipment.nextChangeOilDate) <=
+                  parseDateFR(getCurrentDate()) ? (
                     <>
                       <strong className="text-orange-400">
                         L&apos;huile à changer!
@@ -119,7 +125,8 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
                 </em>
               </p>
 
-              {equipment.nextChangeOilDate === getCurrentDate() && (
+              {parseDateFR(equipment.nextChangeOilDate) <=
+                parseDateFR(getCurrentDate()) && (
                 <ChangeDateForm
                   equipment={equipment}
                   nextChangeDate={equipment.nextChangeOilDate}
@@ -129,133 +136,142 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
           )}
 
         <div className="flex flex-col gap-3">
-          {equipment.maxCapacityFilters && (
-            <>
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-3">
-                  <TiHeartFullOutline size={ICON_SIZE} />
-                  <p>
-                    Capacité filtres max :{" "}
-                    <em>
-                      <strong>{equipment.maxCapacityFilters} litres</strong>
-                    </em>
-                  </p>
-                </div>
-                <div className="flex flex-col gap-1 border border-[#37436a] p-2 w-fit rounded">
+          {equipment.maxCapacityFilters &&
+            equipment.nextChangeFiltersDate &&
+            equipment.nextCleanFiltersDate && (
+              <>
+                <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-3">
-                    <RiDrinks2Fill size={ICON_SIZE} />
+                    <TiHeartFullOutline size={ICON_SIZE} />
                     <p>
-                      Déjà consommés :{" "}
+                      Capacité filtres max :{" "}
                       <em>
-                        <strong>{equipment.litersUsed ?? 0} litres</strong>
+                        <strong>{equipment.maxCapacityFilters} litres</strong>
                       </em>
                     </p>
                   </div>
+                  <div className="flex flex-col gap-1 border border-[#37436a] p-2 w-fit rounded">
+                    <div className="flex items-center gap-3">
+                      <RiDrinks2Fill size={ICON_SIZE} />
+                      <p>
+                        Déjà consommés :{" "}
+                        <em>
+                          <strong>{equipment.litersUsed ?? 0} litres</strong>
+                        </em>
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <IoMdAdd size={ICON_SIZE} />
+                      <AddLitersForm equipment={equipment} />
+                    </div>
+                  </div>
                   <div className="flex items-center gap-3">
-                    <IoMdAdd size={ICON_SIZE} />
-                    <AddLitersForm equipment={equipment} />
+                    <GiDuration size={ICON_SIZE} />
+                    <p>
+                      Capacité filtres restantes :{" "}
+                      <em>
+                        <strong>
+                          {getNbLeftLiters(
+                            equipment.maxCapacityFilters,
+                            Number(equipment.litersUsed ?? 0)
+                          )}{" "}
+                          litres
+                        </strong>
+                      </em>
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <GiDuration size={ICON_SIZE} />
-                  <p>
-                    Capacité filtres restantes :{" "}
-                    <em>
-                      <strong>
-                        {getNbLeftLiters(
-                          equipment.maxCapacityFilters,
-                          Number(equipment.litersUsed ?? 0)
-                        )}{" "}
-                        litres
-                      </strong>
-                    </em>
-                  </p>
-                </div>
-              </div>
 
-              <div>
-                <div className="flex items-center gap-3">
-                  <MdOutlineDateRange size={ICON_SIZE} />
-                  <p>
-                    Filtres à changer :{" "}
-                    <em>
-                      {equipment.nextChangeFiltersDate === getCurrentDate() ? (
-                        <>
-                          <strong className="text-orange-400">
-                            filtres à changer!
-                          </strong>{" "}
-                        </>
-                      ) : (
-                        <>
-                          <strong>le {equipment.nextChangeFiltersDate}</strong>{" "}
-                        </>
-                      )}
-                    </em>
-                  </p>
+                <div>
+                  <div className="flex items-center gap-3">
+                    <MdOutlineDateRange size={ICON_SIZE} />
+                    <p>
+                      Filtres à changer :{" "}
+                      <em>
+                        {parseDateFR(equipment.nextChangeFiltersDate) <=
+                        parseDateFR(getCurrentDate()) ? (
+                          <>
+                            <strong className="text-orange-400">
+                              filtres à changer!
+                            </strong>{" "}
+                          </>
+                        ) : (
+                          <>
+                            <strong>
+                              le {equipment.nextChangeFiltersDate}
+                            </strong>{" "}
+                          </>
+                        )}
+                      </em>
+                    </p>
 
-                  {equipment.nextChangeFiltersDate === getCurrentDate() && (
-                    <ChangeFiltersForm
-                      equipment={equipment}
-                      nextChangeFiltersDate={equipment.nextChangeFiltersDate}
-                    />
+                    {parseDateFR(equipment.nextChangeFiltersDate) <=
+                      parseDateFR(getCurrentDate()) && (
+                      <ChangeFiltersForm
+                        equipment={equipment}
+                        nextChangeFiltersDate={equipment.nextChangeFiltersDate}
+                      />
+                    )}
+                  </div>
+
+                  {parseDateFR(equipment.nextChangeFiltersDate) <=
+                    parseDateFR(getCurrentDate()) && (
+                    <hr className="mt-1 mb-1 border-0 bg-orange-400 h-[0.5px]" />
                   )}
-                </div>
 
-                {equipment.nextChangeFiltersDate === getCurrentDate() && (
-                  <hr className="mt-1 mb-1 border-0 bg-orange-400 h-[0.5px]" />
-                )}
+                  <div className="flex items-center gap-3">
+                    <MdOutlineDateRange size={ICON_SIZE} />
+                    <p>
+                      Filtres à nettoyer :{" "}
+                      <em>
+                        {parseDateFR(equipment.nextCleanFiltersDate) <=
+                        parseDateFR(getCurrentDate()) ? (
+                          <>
+                            <strong className="text-orange-400">
+                              filtres à nettoyer!
+                            </strong>{" "}
+                          </>
+                        ) : (
+                          <>
+                            <strong>le {equipment.nextCleanFiltersDate}</strong>{" "}
+                          </>
+                        )}
+                      </em>
+                    </p>
 
-                <div className="flex items-center gap-3">
-                  <MdOutlineDateRange size={ICON_SIZE} />
-                  <p>
-                    Filtres à nettoyer :{" "}
-                    <em>
-                      {equipment.nextCleanFiltersDate === getCurrentDate() ? (
-                        <>
-                          <strong className="text-orange-400">
-                            filtres à nettoyer!
-                          </strong>{" "}
-                        </>
-                      ) : (
-                        <>
-                          <strong>le {equipment.nextCleanFiltersDate}</strong>{" "}
-                        </>
-                      )}
-                    </em>
-                  </p>
-
-                  {equipment.nextCleanFiltersDate === getCurrentDate() && (
-                    <CleanFiltersForm
-                      equipment={equipment}
-                      nextCleanFiltersDate={equipment.nextCleanFiltersDate}
-                    />
-                  )}
+                    {parseDateFR(equipment.nextCleanFiltersDate) <=
+                      parseDateFR(getCurrentDate()) && (
+                      <CleanFiltersForm
+                        equipment={equipment}
+                        nextCleanFiltersDate={equipment.nextCleanFiltersDate}
+                      />
+                    )}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <GiDuration size={ICON_SIZE} />
+                    <p>
+                      Cuves à nettoyer dans :{" "}
+                      <em>
+                        {getNextCleanTanks() <= 0 ? (
+                          <>
+                            <strong className="text-orange-400">
+                              Cuves à nettoyer!
+                            </strong>
+                          </>
+                        ) : (
+                          <>
+                            <strong className="text-green-500">
+                              {getNextCleanTanks()}
+                            </strong>{" "}
+                            jours
+                          </>
+                        )}
+                      </em>
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <GiDuration size={ICON_SIZE} />
-                  <p>
-                    Cuves à nettoyer dans :{" "}
-                    <em>
-                      {getNextCleanTanks() === 0 ? (
-                        <>
-                          <strong className="text-orange-400">
-                            Cuves à nettoyer!
-                          </strong>
-                        </>
-                      ) : (
-                        <>
-                          <strong className="text-green-500">
-                            {getNextCleanTanks()}
-                          </strong>{" "}
-                          jours
-                        </>
-                      )}
-                    </em>
-                  </p>
-                </div>
-              </div>
-            </>
-          )}
+              </>
+            )}
         </div>
       </div>
     </>
@@ -263,5 +279,3 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
 };
 
 export default Equipment;
-
-const ICON_SIZE = 25;

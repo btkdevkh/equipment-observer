@@ -1,6 +1,6 @@
 # Suivi de votre système / appareil pour prolonger sa durée de vie
 
-![System Tracker Home](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app_home.png?raw=true)
+![System Tracker Home](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app-home.png?raw=true)
 ![System Tracker Create](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app_create.png?raw=true)
 
 ---
