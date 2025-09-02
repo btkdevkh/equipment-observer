@@ -13,6 +13,7 @@ export interface IEquipment {
   litersUsed?: number;
   leftCapacityFilters?: number;
   tanksCleaned?: boolean;
+  thumbnail?: string;
 }
 
 export enum Category {

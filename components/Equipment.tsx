@@ -17,6 +17,7 @@ import {
   getNextCleanTanks,
   parseDateFR,
 } from "@/functions/functions";
+import Thumbnail from "./Thumbnail";
 
 type EquipmentProps = {
   equipment: IEquipment;
@@ -27,9 +28,9 @@ const ICON_SIZE = 25;
 
 const Equipment = ({ equipment, index }: EquipmentProps) => {
   return (
-    <>
-      <div className="flex flex-col gap-3 border border-[#37436a] p-3 relative">
-        <span className="absolute top-1 left-1 border-2 border-[#7FEBF8] bg-[#1a3b4f] h-7 w-7 rounded-full flex items-center justify-center">
+    <div className="border border-[#37436a] p-3 flex flex-col justify-between h-fit">
+      <div className="flex flex-col gap-3 py-3 relative w-full">
+        <span className="absolute top-2 -left-1 border-2 border-[#7FEBF8] bg-[#1a3b4f] h-7 w-7 rounded-full flex items-center justify-center">
           <small>{index}</small>
         </span>
 
@@ -274,7 +275,9 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
             )}
         </div>
       </div>
-    </>
+
+      <Thumbnail equipment={equipment} />
+    </div>
   );
 };
 
