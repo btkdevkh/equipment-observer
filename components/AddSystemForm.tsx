@@ -19,9 +19,31 @@ const AddSystemForm = () => {
     const buyDate = formData.get("buy-date");
     const putIntoServiceDate = formData.get("put-into-service-date");
     const maxCapacityFilters = formData.get("max-capacity-filters");
+    const thumbnail = formData.get("thumbnail");
 
     if (!category || !modelName || !buyDate || !putIntoServiceDate) {
       return;
+    }
+
+    // Formatting file
+    let newFileName: string | null = null;
+    if (thumbnail) {
+      const buffer = await (thumbnail as File).arrayBuffer();
+
+      const modelNameFormat = (modelName as string)
+        .replaceAll(" ", "_")
+        .replaceAll(/[\/,?*]/g, "");
+
+      newFileName = modelNameFormat + path.extname((thumbnail as File).name);
+
+      const uploadDir = path.join(process.cwd(), "public/thumbnails");
+
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true });
+      }
+
+      const filePath = path.join(uploadDir, newFileName.toLowerCase());
+      fs.writeFileSync(filePath, Buffer.from(buffer));
     }
 
     // Get exists json file
@@ -35,6 +57,7 @@ const AddSystemForm = () => {
       putIntoServiceDate: new Date(
         putIntoServiceDate.toString()
       ).toLocaleDateString("fr-FR"),
+      thumbnail: newFileName?.toLowerCase() ?? "n/a",
     };
 
     // Uniquement pour le système de filtration d'eau
@@ -146,6 +169,16 @@ const AddSystemForm = () => {
             type="number"
             name="max-capacity-filters"
             placeholder="Capacité max des filtres en litres"
+            className="p-2 border border-[#37436a] rounded outline-0"
+          />
+        </div>
+        <div className="flex flex-col text-gray-400">
+          <label>
+            Photo<small> (La photo est facultative)</small>
+          </label>
+          <input
+            type="file"
+            name="thumbnail"
             className="p-2 border border-[#37436a] rounded outline-0"
           />
         </div>

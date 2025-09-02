@@ -70,6 +70,7 @@ export default function Home() {
           </div>
 
           <Link
+            rel="preload"
             href="/create"
             className="md:w-fit text-center border-2 border-[#7FEBF8] bg-[#1a3b4f] py-2 px-4 font-bold rounded"
           >
