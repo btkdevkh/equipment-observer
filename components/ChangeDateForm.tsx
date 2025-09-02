@@ -3,7 +3,10 @@ import path from "path";
 import { revalidatePath } from "next/cache";
 import { getKeyFromKey } from "./AddSystemForm";
 import { Category, Equipments, IEquipment } from "@/types/Equipment";
-import { getNextChangeDateInterval } from "@/functions/functions";
+import {
+  getCurrentDate,
+  getNextChangeDateInterval,
+} from "@/functions/functions";
 
 type ChangeFiltersFormProps = {
   equipment: IEquipment;
@@ -35,7 +38,10 @@ const ChangeDateForm = ({
           getKeyFromKey(Category, Category.COFFEE_MACHINE) &&
         eqp.id === equipment.id
       ) {
-        const lastChangedDescalDate = changeDate.toString();
+        const lastChangedDescalDate =
+          eqp.model !== "Delonghi ECAM22.110.B"
+            ? changeDate.toString()
+            : getCurrentDate();
         eqp.nextDescalingDate = getNextChangeDateInterval(
           lastChangedDescalDate,
           3

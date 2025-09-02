@@ -13,12 +13,12 @@ const AddLitersForm = ({ equipment }: AddLitersFormProps) => {
 
     const nbLiters = formData.get("nb-liters");
 
-    // Get exists Nb liters
+    // Get exists file
     const filePath = path.resolve(process.cwd(), "data.json");
     const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
     const equipments = JSON.parse(jsonData) as Equipments;
 
-    // Find equipment
+    // Map & Find equipment
     const mapEquipments = equipments.equipments.map((eqp) => {
       if (equipment.maxCapacityFilters && eqp.id === equipment.id) {
         const liters = Number(eqp.litersUsed ?? 0) + Number(nbLiters);

@@ -22,12 +22,12 @@ const ChangeFiltersForm = ({
       return;
     }
 
-    // Get exists Nb liters
+    // Get exists file
     const filePath = path.resolve(process.cwd(), "data.json");
     const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
     const equipments = JSON.parse(jsonData) as Equipments;
 
-    // Find equipment
+    // Map & Find equipment
     const mapEquipments = equipments.equipments.map((eqp) => {
       if (equipment.maxCapacityFilters && eqp.id === equipment.id) {
         const lastChangedFiltersDate = changeFiltersDate.toString();

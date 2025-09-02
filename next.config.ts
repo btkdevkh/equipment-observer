@@ -17,4 +17,14 @@ const withSerwist = withSerwistInit({
 
 export default withSerwist({
   // Your Next.js config
+  // images: {
+  //   remotePatterns: [
+  //     {
+  //       protocol: "http",
+  //       hostname: "localhost",
+  //       port: "3000",
+  //       pathname: "/thumbnails/**",
+  //     },
+  //   ],
+  // },
 });
