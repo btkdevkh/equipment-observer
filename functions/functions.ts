@@ -81,3 +81,27 @@ export const parseDateFR = (dateStr: string): Date => {
   const [jour, mois, année] = dateStr.split("/").map(Number);
   return new Date(année, mois - 1, jour); // mois commence à 0
 };
+
+export const getKeyFromValue = <
+  T extends Record<string, unknown>,
+  V extends T[keyof T]
+>(
+  obj: T,
+  value: V
+): { [K in keyof T]: T[K] extends V ? K : never }[keyof T] | undefined => {
+  return Object.keys(obj).find((k) => obj[k as keyof T] === value) as
+    | { [K in keyof T]: T[K] extends V ? K : never }[keyof T]
+    | undefined;
+};
+
+export const getKeyFromKey = <
+  T extends Record<string, unknown>,
+  V extends T[keyof T]
+>(
+  obj: T,
+  key: V
+): { [K in keyof T]: T[K] extends V ? K : never }[keyof T] | undefined => {
+  return Object.keys(obj).find((k) => obj[k as keyof T] === key) as
+    | { [K in keyof T]: T[K] extends V ? K : never }[keyof T]
+    | undefined;
+};

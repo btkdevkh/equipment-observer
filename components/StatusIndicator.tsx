@@ -1,8 +1,11 @@
 import { Category, IEquipment } from "@/types/Equipment";
 import { MdOutlineMoodBad } from "react-icons/md";
 import { MdOutlineMood } from "react-icons/md";
-import { getKeyFromKey } from "./AddSystemForm";
-import { getCurrentDate, parseDateFR } from "@/functions/functions";
+import {
+  getCurrentDate,
+  getKeyFromKey,
+  parseDateFR,
+} from "@/functions/functions";
 
 type StatusIndicatorProps = {
   equipment: IEquipment;

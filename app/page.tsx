@@ -1,28 +1,14 @@
-import fs from "fs";
-import path from "path";
 import HeadingTitle from "@/components/HeadingTitle";
-import { Equipments } from "@/types/Equipment";
 import Equipment from "@/components/Equipment";
 import AddSystemForm from "@/components/AddSystemForm";
 import AppDatetime from "@/components/AppDatetime";
 import MoreInfo from "@/components/MoreInfo";
 import Link from "next/link";
 import { sortedDateStrDESC } from "@/helpers/sortedDateStrDESC";
+import getEquipments from "@/actions/getEquipments";
 
-export default function Home() {
-  const filePath = path.resolve(process.cwd(), "data.json");
-
-  // Read existing file content
-  let data: Equipments = { equipments: [] };
-  if (fs.existsSync(filePath)) {
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    if (fileContent) {
-      data = JSON.parse(fileContent);
-    }
-  } else {
-    // Create file with default data
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf-8");
-  }
+export default async function Home() {
+  const data = await getEquipments();
 
   if (data.equipments.length === 0) {
     return (
@@ -58,7 +44,6 @@ export default function Home() {
           {/* Datetime */}
           <AppDatetime initialDate={new Date().toISOString()} />
 
-          {/* Status */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {sortedEquipmentsByDateStrDESC.map((equipment, index) => (
               <Equipment
