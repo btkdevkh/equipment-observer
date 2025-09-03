@@ -8,11 +8,11 @@ import AddLitersForm from "./waterFilterSystem/AddLitersForm";
 import ChangeFiltersForm from "./waterFilterSystem/ChangeFiltersForm";
 import CleanFiltersForm from "./waterFilterSystem/CleanFiltersForm";
 import StatusIndicator from "./StatusIndicator";
-import { getKeyFromKey } from "./AddSystemForm";
 import ChangeDateForm from "./ChangeDateForm";
 import { HiMiniCpuChip } from "react-icons/hi2";
 import {
   getCurrentDate,
+  getKeyFromKey,
   getNbLeftLiters,
   getNextCleanTanks,
   parseDateFR,

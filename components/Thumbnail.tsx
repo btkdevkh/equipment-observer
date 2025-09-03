@@ -10,7 +10,7 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
   return (
     <>
       {equipment.thumbnail ? (
-        <div className="w-full border-2 border-[#7FEBF8] rounded p-1">
+        <div className="w-full border-2 border-[#7FEBF8] rounded p-1  overflow-hidden">
           <Image
             src={
               equipment.thumbnail
@@ -19,7 +19,11 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
             }
             width={300}
             height={300}
-            style={{ width: "100%", height: "300px", objectFit: "contain" }}
+            style={{
+              width: "100%",
+              height: "300px",
+              objectFit: "contain",
+            }}
             alt={equipment.model}
             className="rounded"
           />
