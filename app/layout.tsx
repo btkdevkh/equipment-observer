@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const APP_NAME = "Systems Tracker";
-const APP_DEFAULT_TITLE = "Systems Tracker";
-const APP_TITLE_TEMPLATE = "%s - PWA App";
+const APP_NAME = "Equipment Observer";
+const APP_DEFAULT_TITLE = "Equipment Observer";
+const APP_TITLE_TEMPLATE = "%s - Next.js App";
 const APP_DESCRIPTION = "L'util pour le suivi des systèmes";
 
 export const metadata: Metadata = {
@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: APP_DEFAULT_TITLE,
-    // startUpImage: [],
   },
   formatDetection: {
     telephone: false,

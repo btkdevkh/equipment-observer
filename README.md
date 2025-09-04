@@ -1,7 +1,7 @@
 # Suivi de votre système / appareil pour prolonger sa durée de vie
 
-![System Tracker Home](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app-home.png?raw=true)
-![System Tracker Create](https://github.com/btkdevkh/weeplow-gravity-suivi/blob/main/public/app_create.png?raw=true)
+![Equipment Observer Home](https://github.com/btkdevkh/equipment-observer/blob/main/public/home.png?raw=true)
+![Equipment Observer Create](https://github.com/btkdevkh/equipment-observer/blob/main/public/create.png?raw=true)
 
 ---
 
@@ -10,8 +10,6 @@
 Cette application permet de suivre en temps réel l'état de votre système ou appareil. Elle fournit des informations détaillées, les dates importantes liées à l'entretien du système.
 
 Cette application n'est pas liée à une base de données ou quoi que ce soit, elle se base sur les modules natifs de Node.js (fs) pour la persistance des données. Si vous voulez que les données soient persistées du coté serverless, il faudra une base de données quelque part.
-
-Elle peut être utilisée sur un vieil ordinateur et afficher l'application en plein écran dans un environnement local en Node.js.
 
 ---
 
@@ -56,5 +54,5 @@ L'application affiche des informations telles que :
 
 ## Technologies utilisées
 
-- Interface web responsive (PWA, Next.js/Node.js, Tailwind)
+- Interface web responsive (Next.js, Tailwind)
 - Gestion des données en temps réel pour le suivi des consommations et de l’entretien
