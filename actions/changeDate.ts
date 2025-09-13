@@ -12,6 +12,8 @@ import {
 
 const changeDate = async (equipment: IEquipment, formData: FormData) => {
   const changeDate = formData.get("change-date");
+  const nbMonth = formData.get("nb-month");
+  const type = formData.get("type");
 
   if (!changeDate) {
     return;
@@ -38,12 +40,45 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
       );
     }
 
+    // Treadmill
     if (
       equipment.category === getKeyFromKey(Category, Category.TREADMILL) &&
       eqp.id === equipment.id
     ) {
       const lastChangedOilDate = changeDate.toString();
       eqp.nextChangeOilDate = getNextChangeDateInterval(lastChangedOilDate, 3);
+    }
+
+    // Robot vacuum
+    if (
+      equipment.category === getKeyFromKey(Category, Category.ROBOT_VACUUM) &&
+      eqp.id === equipment.id
+    ) {
+      const lastChangedFiltereDate = changeDate.toString();
+      const lastChangedMainBrushDate = changeDate.toString();
+      const lastChangedLateralBrushDate = changeDate.toString();
+
+      if (nbMonth && Number(nbMonth) === 6 && type && type === "Filter") {
+        eqp.nextChangeFilterDate = getNextChangeDateInterval(
+          lastChangedFiltereDate,
+          6
+        );
+      } else if (
+        nbMonth &&
+        Number(nbMonth) === 6 &&
+        type &&
+        type === "Lateral Brush"
+      ) {
+        eqp.nextChangeLateralBrushDate = getNextChangeDateInterval(
+          lastChangedLateralBrushDate,
+          6
+        );
+      } else {
+        eqp.nextChangeMainBrushDate = getNextChangeDateInterval(
+          lastChangedMainBrushDate,
+          12
+        );
+      }
     }
 
     return eqp;

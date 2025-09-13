@@ -70,6 +70,111 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
           </div>
         </div>
 
+        {/* Robot vacuum */}
+        {equipment.category ===
+          getKeyFromKey(Category, Category.ROBOT_VACUUM) && (
+          <>
+            <div className="flex items-center gap-3">
+              <MdOutlineDateRange size={ICON_SIZE} />
+              <p>
+                Brosse principale à changer :{" "}
+                <em>
+                  {parseDateFR(equipment.nextChangeMainBrushDate as string) <=
+                  parseDateFR(getCurrentDate()) ? (
+                    <>
+                      <strong className="text-orange-400">
+                        Brosse principale à changer!
+                      </strong>{" "}
+                    </>
+                  ) : (
+                    <>
+                      <strong>
+                        le {equipment.nextChangeMainBrushDate as string}
+                      </strong>
+                    </>
+                  )}
+                </em>
+              </p>
+
+              {parseDateFR(equipment.nextChangeMainBrushDate as string) <=
+                parseDateFR(getCurrentDate()) && (
+                <ChangeDateForm
+                  equipment={equipment}
+                  nbMonth={12}
+                  nextChangeDate={equipment.nextChangeMainBrushDate as string}
+                />
+              )}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <MdOutlineDateRange size={ICON_SIZE} />
+              <p>
+                Brosse latérale à changer :{" "}
+                <em>
+                  {parseDateFR(
+                    equipment.nextChangeLateralBrushDate as string
+                  ) <= parseDateFR(getCurrentDate()) ? (
+                    <>
+                      <strong className="text-orange-400">
+                        Brosse latérale à changer!
+                      </strong>{" "}
+                    </>
+                  ) : (
+                    <>
+                      <strong>
+                        le {equipment.nextChangeLateralBrushDate as string}
+                      </strong>
+                    </>
+                  )}
+                </em>
+              </p>
+
+              {parseDateFR(equipment.nextChangeLateralBrushDate as string) <=
+                parseDateFR(getCurrentDate()) && (
+                <ChangeDateForm
+                  equipment={equipment}
+                  nbMonth={6}
+                  type="Lateral Brush"
+                  nextChangeDate={
+                    equipment.nextChangeLateralBrushDate as string
+                  }
+                />
+              )}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <MdOutlineDateRange size={ICON_SIZE} />
+              <p>
+                Filtre à changer :{" "}
+                <em>
+                  {parseDateFR(equipment.nextChangeFilterDate as string) <=
+                  parseDateFR(getCurrentDate()) ? (
+                    <>
+                      <strong className="text-orange-400">
+                        Filtre à changer!
+                      </strong>{" "}
+                    </>
+                  ) : (
+                    <>
+                      <strong>le {equipment.nextChangeFilterDate}</strong>
+                    </>
+                  )}
+                </em>
+              </p>
+
+              {parseDateFR(equipment.nextChangeFilterDate as string) <=
+                parseDateFR(getCurrentDate()) && (
+                <ChangeDateForm
+                  equipment={equipment}
+                  nbMonth={6}
+                  type="Filter"
+                  nextChangeDate={equipment.nextChangeFilterDate}
+                />
+              )}
+            </div>
+          </>
+        )}
+
         {equipment.nextDescalingDate &&
           equipment.category ===
             getKeyFromKey(Category, Category.COFFEE_MACHINE) && (

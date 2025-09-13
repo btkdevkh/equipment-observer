@@ -87,6 +87,22 @@ const addEquipment = async (formData: FormData) => {
     );
   }
 
+  // Uniquement pour le robo aspirateur
+  if (category === getKeyFromValue(Category, Category.ROBOT_VACUUM)) {
+    newEquipment.nextChangeMainBrushDate = getNextChangeDateInterval(
+      newEquipment.putIntoServiceDate,
+      12
+    );
+    newEquipment.nextChangeLateralBrushDate = getNextChangeDateInterval(
+      newEquipment.putIntoServiceDate,
+      6
+    );
+    newEquipment.nextChangeFilterDate = getNextChangeDateInterval(
+      newEquipment.putIntoServiceDate,
+      6
+    );
+  }
+
   // Read existing file content
   let data: Equipments = { equipments: [] };
   if (fs.existsSync(filePath)) {
