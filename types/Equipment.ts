@@ -14,12 +14,18 @@ export interface IEquipment {
   leftCapacityFilters?: number;
   tanksCleaned?: boolean;
   thumbnail?: string;
+
+  // Robot Vacuum
+  nextChangeMainBrushDate?: string; // 12 mois
+  nextChangeLateralBrushDate?: string; // 6 mois
+  nextChangeFilterDate?: string; // 6 mois
 }
 
 export enum Category {
   WATER_FILTER_SYSTEM = "Système de filtration d'eau",
   COFFEE_MACHINE = "Machine à café",
   TREADMILL = "Tapis de course",
+  ROBOT_VACUUM = "Robot aspirateur",
 }
 
 export type Equipments = { equipments: IEquipment[] };
