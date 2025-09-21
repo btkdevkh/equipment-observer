@@ -13,7 +13,6 @@ COPY package*.json ./
 RUN npm install --production
 COPY --from=builder /app/.next ./
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.js ./
 ENV NODE_ENV=production
 ENV PORT=5000
 EXPOSE 5000
