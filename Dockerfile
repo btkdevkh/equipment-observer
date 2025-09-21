@@ -19,7 +19,7 @@ COPY --from=builder /app/.next ./
 COPY --from=builder /app/public ./public
 
 ENV NODE_ENV=production
-ENV PORT=5000
-EXPOSE 5000
+ENV PORT=3001
+EXPOSE 3001
 
 CMD ["npm", "run", "start"]
