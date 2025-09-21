@@ -2,7 +2,8 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-COPY package*.json ./
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./  
 RUN npm install
 
 COPY . .
@@ -24,5 +25,4 @@ ENV NODE_ENV=production
 ENV PORT=3001
 EXPOSE 3001
 
-# CMD ["npm", "run" "start"]
-CMD npm run start
+CMD ["npm", "run" "start"]
