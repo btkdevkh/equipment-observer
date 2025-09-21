@@ -18,8 +18,11 @@ RUN npm install --production
 COPY --from=builder /app/.next ./
 COPY --from=builder /app/public ./public
 
-ENV NODE_ENV=production
-ENV PORT=3001
+# ENV NODE_ENV=production
+# ENV PORT=3001
+
 EXPOSE 3001
 
-CMD npm run start
+USER node
+
+CMD ["npm", "run", "start"]
