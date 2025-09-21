@@ -6,4 +6,5 @@ services:
       - "3001:3001" # port hôte : port conteneur
     volumes:
       - ./data.json:/app/data.json
+      - ./public/thumbnails:/app/public/thumbnails
     restart: always
