@@ -2,8 +2,7 @@
 FROM node:22-alpine AS builder
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json package-lock.json ./  
+COPY package*.json ./
 RUN npm install
 
 COPY . .
@@ -21,8 +20,14 @@ RUN npm install --production
 COPY --from=builder /app/.next ./
 COPY --from=builder /app/public ./public
 
+# Donner la propriété des fichiers à l'utilisateur node
+RUN chown -R node:node /app
+
 ENV NODE_ENV=production
 ENV PORT=3001
 EXPOSE 3001
+
+# Exécuter en tant qu'utilisateur non-root
+USER node
 
 CMD ["npm", "run" "start"]
