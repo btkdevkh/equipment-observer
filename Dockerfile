@@ -12,17 +12,16 @@ RUN npm run build
 FROM node:22-alpine
 WORKDIR /app
 
-COPY package*.json ./
+# Copier package.json complet depuis le builder
+COPY --from=builder /app/package*.json ./
 RUN npm install --production
 
+# Copier le build Next.js et public
 COPY --from=builder /app/.next ./
 COPY --from=builder /app/public ./public
 
-# ENV NODE_ENV=production
-# ENV PORT=3001
-
+ENV NODE_ENV=production
+ENV PORT=3001
 EXPOSE 3001
-
-USER node
 
 CMD ["npm", "run", "start"]
