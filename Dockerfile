@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN npm run build
 
 # Étape 2 : production
 FROM node:22-alpine
@@ -14,11 +15,10 @@ WORKDIR /app
 # Copier package.json complet depuis le builder
 COPY --from=builder /app/package*.json ./
 RUN npm install --production
-RUN npm run build
 
 # Copier le build Next.js et public
-# COPY --from=builder /app/.next ./
-# COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./
+COPY --from=builder /app/public ./public
 
 ENV NODE_ENV=production
 ENV PORT=3001
