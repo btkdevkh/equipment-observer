@@ -1,0 +1,9 @@
+services:
+  app:
+    build: .
+    container_name: equipment_observer
+    ports:
+      - "8001:5000" # port hôte : port conteneur
+    volumes:
+      - ./data.json:/app/data.json
+    restart: always
