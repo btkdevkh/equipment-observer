@@ -3,7 +3,7 @@ services:
     build: .
     container_name: equipment_observer
     ports:
-      - "8000:3001" # port hôte : port conteneur
+      - "8001:3001" # port hôte : port conteneur
     volumes:
       - ./data.json:/app/data.json
     restart: always
