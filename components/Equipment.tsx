@@ -176,8 +176,8 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
         )}
 
         {equipment.nextDescalingDate &&
-          equipment.category ===
-            getKeyFromKey(Category, Category.COFFEE_MACHINE) && (
+          (equipment.category === getKeyFromKey(Category, Category.COFFEE_MACHINE) ||
+           equipment.category === getKeyFromKey(Category, Category.KETTLE)) && (
             <div className="flex items-center gap-3">
               <MdOutlineDateRange size={ICON_SIZE} />
               <p>

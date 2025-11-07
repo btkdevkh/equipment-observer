@@ -26,6 +26,7 @@ export enum Category {
   COFFEE_MACHINE = "Machine à café",
   TREADMILL = "Tapis de course",
   ROBOT_VACUUM = "Robot aspirateur",
+  KETTLE = "Bouilloir",
 }
 
 export type Equipments = { equipments: IEquipment[] };

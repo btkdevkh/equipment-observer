@@ -79,6 +79,14 @@ const addEquipment = async (formData: FormData) => {
     );
   }
 
+  // Uniquement pour le bouilloir
+  if (category === getKeyFromValue(Category, Category.KETTLE)) {
+    newEquipment.nextDescalingDate = getNextChangeDateInterval(
+      newEquipment.putIntoServiceDate,
+      1
+    );
+  }
+
   // Uniquement pour le tapis de course
   if (category === getKeyFromValue(Category, Category.TREADMILL)) {
     newEquipment.nextChangeOilDate = getNextChangeDateInterval(

@@ -40,6 +40,18 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
       );
     }
 
+    // Kettle
+    if (
+      equipment.category === getKeyFromKey(Category, Category.KETTLE) &&
+      eqp.id === equipment.id
+    ) {
+      const lastChangedDescalDate = changeDate.toString();
+      eqp.nextDescalingDate = getNextChangeDateInterval(
+        lastChangedDescalDate,
+        1
+      );
+    }
+
     // Treadmill
     if (
       equipment.category === getKeyFromKey(Category, Category.TREADMILL) &&
