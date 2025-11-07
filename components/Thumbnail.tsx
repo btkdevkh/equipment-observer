@@ -15,7 +15,7 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
             src={
               equipment.thumbnail
                 ? `/thumbnails/${equipment.thumbnail}`
-                : "/thumbnails/no_image.png"
+                : `/thumbnails/no_image.png`
             }
             width={300}
             height={300}
@@ -27,6 +27,7 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
             }}
             alt={equipment.model}
             className="rounded"
+            unoptimized={true}
           />
         </div>
       ) : (
