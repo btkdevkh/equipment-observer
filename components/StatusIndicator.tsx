@@ -17,6 +17,8 @@ const StatusIndicator = ({ equipment }: StatusIndicatorProps) => {
     getKeyFromKey(Category, Category.WATER_FILTER_SYSTEM);
   const isCoffeeMachine =
     equipment.category === getKeyFromKey(Category, Category.COFFEE_MACHINE);
+  const isKettle =
+    equipment.category === getKeyFromKey(Category, Category.KETTLE);
   const isTreadmill =
     equipment.category === getKeyFromKey(Category, Category.TREADMILL);
 
@@ -27,7 +29,7 @@ const StatusIndicator = ({ equipment }: StatusIndicatorProps) => {
       ? true
       : isWaterSystem && getCurrentDate() >= equipment.nextCleanFiltersDate!
       ? true
-      : isCoffeeMachine &&
+      : (isCoffeeMachine || isKettle) &&
         parseDateFR(getCurrentDate()) >=
           parseDateFR(equipment.nextDescalingDate!)
       ? true
