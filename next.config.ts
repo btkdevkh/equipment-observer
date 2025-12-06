@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   basePath: "/equipmentobs",
   assetPrefix: "/equipmentobs/",
   images: {
+    unoptimized: true,
     loader: "default", // ou 'imgix', 'cloudinary', etc.
     path: "/equipmentobs/", // permet d'utiliser des images depuis /public
   },
