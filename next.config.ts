@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   },
   // IMPORTANT pour servir l'app dans /equipmentobs
   basePath: "/equipmentobs",
-  assetPrefix: "/equipmentobs/",
+  assetPrefix: "/equipmentobs",
   images: {
     unoptimized: true,
     // loader: "default", // ou 'imgix', 'cloudinary', etc.
