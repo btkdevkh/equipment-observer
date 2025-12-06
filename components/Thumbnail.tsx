@@ -14,8 +14,8 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
           <Image
             src={
               equipment.thumbnail
-                ? `/thumbnails/${equipment.thumbnail}`
-                : `/thumbnails/no_image.png`
+                ? `/equipmentobs/thumbnails/${equipment.thumbnail}`
+                : `/equipmentobs/thumbnails/no_image.png`
             }
             width={300}
             height={300}
