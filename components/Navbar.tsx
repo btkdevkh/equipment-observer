@@ -5,7 +5,7 @@ const Navbar = () => {
     <>
       <div className="flex justify-center">
         <Image
-          src={`/equipmentobs/robot.png`}
+          src={`/robot.png`}
           width={200}
           height={200}
           alt="Logo"

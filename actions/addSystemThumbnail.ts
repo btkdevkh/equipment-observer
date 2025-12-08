@@ -6,13 +6,17 @@ import { Equipments, IEquipment } from "@/types/Equipment";
 import { revalidatePath } from "next/cache";
 
 const addSystemThumbnail = async (
-  equipment: IEquipment,
+  prevState: { equipment: IEquipment; success: boolean; message: string },
   formData: FormData
 ) => {
   const thumbnail = formData.get("thumbnail");
 
   if (!thumbnail) {
-    return;
+    return {
+      ...prevState,
+      success: false,
+      message: "Champ obligatore",
+    };
   }
 
   // Formatting file
@@ -20,13 +24,13 @@ const addSystemThumbnail = async (
   if (thumbnail) {
     const buffer = await (thumbnail as File).arrayBuffer();
 
-    const modelNameFormat = equipment.model
+    const modelNameFormat = prevState.equipment.model
       .replaceAll(" ", "_")
       .replaceAll(/[\/,?*]/g, "");
 
     newFileName = modelNameFormat + path.extname((thumbnail as File).name);
 
-    const uploadDir = path.join(process.cwd(), "public/thumbnails");
+    const uploadDir = path.resolve("./public/thumbnails");
 
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
@@ -37,13 +41,13 @@ const addSystemThumbnail = async (
   }
 
   // Get exists file
-  const filePath = path.resolve(process.cwd(), "data.json");
+  const filePath = path.resolve("./data/data.json");
   const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
   const equipments = JSON.parse(jsonData) as Equipments;
 
   // Map & Find equipment
   const mapEquipments = equipments.equipments.map((eqp) => {
-    if (eqp.id === equipment.id) {
+    if (eqp.id === prevState.equipment.id) {
       eqp.thumbnail = newFileName?.toLowerCase() ?? "n/a";
     }
 
@@ -56,6 +60,12 @@ const addSystemThumbnail = async (
   // Update by writting file
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   revalidatePath("/");
+
+  return {
+    ...prevState,
+    success: true,
+    message: "Image ajouté",
+  };
 };
 
 export default addSystemThumbnail;

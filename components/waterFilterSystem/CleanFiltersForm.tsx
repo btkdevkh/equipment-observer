@@ -1,5 +1,8 @@
+"use client";
+
 import { IEquipment } from "@/types/Equipment";
 import cleanFilters from "@/actions/cleanFilters";
+import { useActionState, useEffect } from "react";
 
 type CleanFiltersFormProps = {
   equipment: IEquipment;
@@ -10,11 +13,21 @@ const CleanFiltersForm = ({
   equipment,
   nextCleanFiltersDate,
 }: CleanFiltersFormProps) => {
-  const cleanFiltersWithEquipment = cleanFilters.bind(null, equipment);
+  const [state, formAction, isPending] = useActionState(cleanFilters, {
+    equipment,
+    success: false,
+    message: "",
+  });
+
+  useEffect(() => {
+    if (!state.success && state.message) {
+      alert(state.message);
+    }
+  }, [state]);
 
   return (
     <>
-      <form action={cleanFiltersWithEquipment} className="flex gap-2">
+      <form action={formAction} className="flex gap-2">
         <input
           type="hidden"
           name="clean-filters-date"

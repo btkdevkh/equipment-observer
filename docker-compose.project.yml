@@ -3,8 +3,12 @@ services:
     build: .
     container_name: equipment_observer
     ports:
-      - "3001:3001" # port hôte : port conteneur
+      - "3000:3000" # hostport:containerport
     volumes:
-      - ./data.json:/app/data.json
-      - ./public:/app/public
+      - equipment_data:/app/data
+      - equipment_thumbnails:/app/public/thumbnails
     restart: always
+
+volumes:
+  equipment_data:
+  equipment_thumbnails:

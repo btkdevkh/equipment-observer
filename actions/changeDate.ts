@@ -10,25 +10,33 @@ import {
   getNextChangeDateInterval,
 } from "@/functions/functions";
 
-const changeDate = async (equipment: IEquipment, formData: FormData) => {
+const changeDate = async (
+  prevState: { equipment: IEquipment; success: boolean; message: string },
+  formData: FormData
+) => {
   const changeDate = formData.get("change-date");
   const nbMonth = formData.get("nb-month");
   const type = formData.get("type");
 
   if (!changeDate) {
-    return;
+    return {
+      ...prevState,
+      success: false,
+      message: "Champ obligatore",
+    };
   }
 
   // Get exists Nb liters
-  const filePath = path.resolve(process.cwd(), "data.json");
+  const filePath = path.resolve("./data/data.json");
   const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
   const equipments = JSON.parse(jsonData) as Equipments;
 
   // Find equipment
   const mapEquipments = equipments.equipments.map((eqp) => {
     if (
-      equipment.category === getKeyFromKey(Category, Category.COFFEE_MACHINE) &&
-      eqp.id === equipment.id
+      prevState.equipment.category ===
+        getKeyFromKey(Category, Category.COFFEE_MACHINE) &&
+      eqp.id === prevState.equipment.id
     ) {
       const lastChangedDescalDate =
         eqp.model !== "Delonghi ECAM22.110.B"
@@ -42,8 +50,9 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
 
     // Kettle
     if (
-      equipment.category === getKeyFromKey(Category, Category.KETTLE) &&
-      eqp.id === equipment.id
+      prevState.equipment.category ===
+        getKeyFromKey(Category, Category.KETTLE) &&
+      eqp.id === prevState.equipment.id
     ) {
       const lastChangedDescalDate = changeDate.toString();
       eqp.nextDescalingDate = getNextChangeDateInterval(
@@ -54,8 +63,9 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
 
     // Treadmill
     if (
-      equipment.category === getKeyFromKey(Category, Category.TREADMILL) &&
-      eqp.id === equipment.id
+      prevState.equipment.category ===
+        getKeyFromKey(Category, Category.TREADMILL) &&
+      eqp.id === prevState.equipment.id
     ) {
       const lastChangedOilDate = changeDate.toString();
       eqp.nextChangeOilDate = getNextChangeDateInterval(lastChangedOilDate, 3);
@@ -63,8 +73,9 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
 
     // Robot vacuum
     if (
-      equipment.category === getKeyFromKey(Category, Category.ROBOT_VACUUM) &&
-      eqp.id === equipment.id
+      prevState.equipment.category ===
+        getKeyFromKey(Category, Category.ROBOT_VACUUM) &&
+      eqp.id === prevState.equipment.id
     ) {
       const lastChangedFiltereDate = changeDate.toString();
       const lastChangedMainBrushDate = changeDate.toString();
@@ -102,6 +113,12 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
   // Update by writting file
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   revalidatePath("/");
+
+  return {
+    ...prevState,
+    success: true,
+    message: "Opération réusit",
+  };
 };
 
 export default changeDate;

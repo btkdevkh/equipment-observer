@@ -1,6 +1,6 @@
 import { IEquipment } from "@/types/Equipment";
 import Image from "next/image";
-import AddSystemThumbnailForm from "./AddSystemThumbnailForm";
+import AddSystemThumbnailForm from "./forms/AddSystemThumbnailForm";
 
 type ThumbnailProps = {
   equipment: IEquipment;
@@ -10,28 +10,32 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
   return (
     <>
       {equipment.thumbnail ? (
-        <div className="w-full h-[300px] flex items-center border-2 border-[#7FEBF8] rounded p-1  overflow-hidden">
-          <Image
-            src={
-              equipment.thumbnail
-                ? `/equipmentobs/thumbnails/${equipment.thumbnail}`
-                : `/equipmentobs/thumbnails/no_image.png`
-            }
-            width={300}
-            height={300}
-            style={{
-              width: "100%",
-              height: "auto",
-              objectFit: "cover",
-              scale: 0.8,
-            }}
-            alt={equipment.model}
-            className="rounded"
-            unoptimized={true}
-          />
+        <div className="relative w-full bg-white border border-gray-200 rounded p-4">
+          <div className="relative w-full h-[230px] flex items-center justify-center overflow-hidden">
+            <Image
+              src={`/thumbnails/${equipment.thumbnail}`}
+              fill
+              alt={equipment.model}
+              unoptimized={true}
+              className="object-contain p-2"
+            />
+          </div>
         </div>
       ) : (
-        <AddSystemThumbnailForm equipment={equipment} />
+        <>
+          <div className="relative w-full bg-white border border-gray-200 rounded p-4">
+            <div className="relative w-full h-[230px] flex items-center justify-center overflow-hidden">
+              <Image
+                src={`/no_image.png`}
+                fill
+                alt={equipment.model}
+                unoptimized={true}
+                className="object-contain p-2"
+              />
+            </div>
+          </div>
+          <AddSystemThumbnailForm equipment={equipment} />
+        </>
       )}
     </>
   );

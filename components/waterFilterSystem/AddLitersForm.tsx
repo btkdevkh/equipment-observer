@@ -1,29 +1,42 @@
+"use client";
+
 import { IEquipment } from "@/types/Equipment";
 import addLiters from "@/actions/addLiters";
+import { IoMdAdd } from "react-icons/io";
+import { useActionState, useEffect } from "react";
 
 type AddLitersFormProps = {
   equipment: IEquipment;
 };
 
 const AddLitersForm = ({ equipment }: AddLitersFormProps) => {
-  const addLitersWithEquipment = addLiters.bind(null, equipment);
+  const [state, formAction, isPending] = useActionState(addLiters, {
+    equipment,
+    success: false,
+    message: "",
+  });
+
+  useEffect(() => {
+    if (!state.success && state.message) {
+      alert(state.message);
+    }
+  }, [state]);
 
   return (
     <>
-      <form action={addLitersWithEquipment} className="flex gap-2">
+      <form action={formAction} className="flex items-center gap-2 w-full">
         <input
           type="number"
           name="nb-liters"
           id="nb-liters"
-          placeholder="Ajouter (L)"
-          className="w-full px-2 border text-sm border-[#37436a] outline-0 rounded"
+          placeholder="Ajouter le nombre de litre d'eau remplis"
+          className="w-full px-2 py-1 border text-sm border-[#37436a] outline-0 rounded"
           min={1}
         />
-        <input
-          type="submit"
-          value="Valider"
-          className="bg-green-700 px-3 text-sm font-semibold cursor-pointer rounded"
-        />
+
+        <button type="submit" className="text-gray-400 hover:text-gray-200">
+          <IoMdAdd size={25} className="cursor-pointer" title="Ajouter" />
+        </button>
       </form>
     </>
   );

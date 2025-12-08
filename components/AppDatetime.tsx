@@ -34,8 +34,8 @@ const AppDatetime = ({ initialDate }: AppDatetimeProps) => {
   };
 
   return (
-    <div className="h-full flex items-center justify-center gap-2 bg-gray-800 py-2 px-4 text-xl rounded">
-      <div className="">Au {getCurrentDate().todayDate}, à</div>
+    <div className="h-full flex items-center justify-center gap-2 text-xl rounded">
+      <div className="">au {getCurrentDate().todayDate}, à</div>
       <div className="text-yellow-400">{getCurrentDate().hhmmss}</div>
     </div>
   );
