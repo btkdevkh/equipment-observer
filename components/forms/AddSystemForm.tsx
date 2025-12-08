@@ -1,11 +1,31 @@
+"use client";
+
 import { Category } from "@/types/Equipment";
 import { getKeyFromValue } from "@/functions/functions";
 import addEquipment from "@/actions/addEquipment";
+import { useActionState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const AddSystemForm = () => {
+  const router = useRouter();
+  const [state, formAction, isPending] = useActionState(addEquipment, {
+    success: false,
+    message: "",
+  });
+
+  useEffect(() => {
+    if (state.success && state.message) {
+      router.push("/");
+    }
+  }, [state]);
+
   return (
     <>
-      <form action={addEquipment} className="flex flex-col gap-3">
+      {!state.success && state.message && (
+        <div className="text-red-700">{state.message}</div>
+      )}
+
+      <form action={formAction} className="flex flex-col gap-3">
         <div className="flex flex-col text-gray-400">
           <label>
             Categories <small className="text-red-700">*</small>

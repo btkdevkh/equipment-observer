@@ -6,7 +6,7 @@ import fsPromise from "fs/promises";
 import { Equipments } from "@/types/Equipment";
 
 const getEquipments = async () => {
-  const filePath = path.join(process.cwd(), "data.json");
+  const filePath = path.resolve("./data/data.json");
 
   // Read existing file content
   let data: Equipments = { equipments: [] };

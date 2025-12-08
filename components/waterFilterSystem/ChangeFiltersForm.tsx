@@ -1,5 +1,8 @@
+"use client";
+
 import changeFilters from "@/actions/changeFilters";
 import { IEquipment } from "@/types/Equipment";
+import { useActionState, useEffect } from "react";
 
 type ChangeFiltersFormProps = {
   equipment: IEquipment;
@@ -10,11 +13,21 @@ const ChangeFiltersForm = ({
   equipment,
   nextChangeFiltersDate,
 }: ChangeFiltersFormProps) => {
-  const changeFiltersWithEquipment = changeFilters.bind(null, equipment);
+  const [state, formAction, isPending] = useActionState(changeFilters, {
+    equipment,
+    success: false,
+    message: "",
+  });
+
+  useEffect(() => {
+    if (!state.success && state.message) {
+      alert(state.message);
+    }
+  }, [state]);
 
   return (
     <>
-      <form action={changeFiltersWithEquipment} className="flex gap-2">
+      <form action={formAction} className="flex gap-2">
         <input
           type="hidden"
           name="change-filters-date"

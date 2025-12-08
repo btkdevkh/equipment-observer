@@ -20,7 +20,7 @@ const addLiters = async (
   }
 
   // Get exists file
-  const filePath = path.join(process.cwd(), "data.json");
+  const filePath = path.resolve("./data/data.json");
   const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
   const equipments = JSON.parse(jsonData) as Equipments;
 
@@ -43,6 +43,7 @@ const addLiters = async (
   // Update by writting file
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   revalidatePath("/");
+
   return {
     ...prevState,
     success: true,

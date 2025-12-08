@@ -4,7 +4,6 @@ import fs from "fs";
 import path from "path";
 import crypto from "crypto";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 import { Category, Equipments, IEquipment } from "@/types/Equipment";
 import {
   getNextChangeFiltersDate,
@@ -13,21 +12,28 @@ import {
   getKeyFromValue,
 } from "@/functions/functions";
 
-const addEquipment = async (formData: FormData) => {
+const addEquipment = async (
+  prevState: { success: boolean; message: string },
+  formData: FormData
+) => {
   const category = formData.get("category");
   const modelName = formData.get("model-name");
   const buyDate = formData.get("buy-date");
   const putIntoServiceDate = formData.get("put-into-service-date");
   const maxCapacityFilters = formData.get("max-capacity-filters");
-  const thumbnail = formData.get("thumbnail");
+  const thumbnail = formData.get("thumbnail") as File;
 
   if (!category || !modelName || !buyDate || !putIntoServiceDate) {
-    return;
+    return {
+      ...prevState,
+      success: false,
+      message: "Champs obligatoires",
+    };
   }
 
   // Formatting file
   let newFileName: string | null = null;
-  if (thumbnail) {
+  if (thumbnail.size > 0 && thumbnail.name) {
     const buffer = await (thumbnail as File).arrayBuffer();
 
     const modelNameFormat = (modelName as string)
@@ -36,7 +42,7 @@ const addEquipment = async (formData: FormData) => {
 
     newFileName = modelNameFormat + path.extname((thumbnail as File).name);
 
-    const uploadDir = path.join(process.cwd(), "public/thumbnails");
+    const uploadDir = path.resolve("./public/thumbnails");
 
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
@@ -47,7 +53,7 @@ const addEquipment = async (formData: FormData) => {
   }
 
   // Get exists json file
-  const filePath = path.join(process.cwd(), "data.json");
+  const filePath = path.resolve("./data/data.json");
 
   const newEquipment: IEquipment = {
     id: crypto.randomUUID(),
@@ -57,8 +63,11 @@ const addEquipment = async (formData: FormData) => {
     putIntoServiceDate: new Date(
       putIntoServiceDate.toString()
     ).toLocaleDateString("fr-FR"),
-    thumbnail: newFileName?.toLowerCase() ?? "n/a",
   };
+
+  if (newFileName) {
+    newEquipment.thumbnail = newFileName.toLowerCase();
+  }
 
   // Uniquement pour le système de filtration d'eau
   if (maxCapacityFilters) {
@@ -129,7 +138,12 @@ const addEquipment = async (formData: FormData) => {
   // Write data
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
   revalidatePath("/");
-  redirect("/");
+
+  return {
+    ...prevState,
+    success: true,
+    message: "Système / appareil ajouté",
+  };
 };
 
 export default addEquipment;

@@ -13,11 +13,7 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
         <div className="relative w-full bg-white border border-gray-200 rounded p-4">
           <div className="relative w-full h-[230px] flex items-center justify-center overflow-hidden">
             <Image
-              src={
-                equipment.thumbnail
-                  ? `/thumbnails/${equipment.thumbnail}`
-                  : `/thumbnails/no_image.png`
-              }
+              src={`/thumbnails/${equipment.thumbnail}`}
               fill
               alt={equipment.model}
               unoptimized={true}
@@ -26,7 +22,20 @@ const Thumbnail = ({ equipment }: ThumbnailProps) => {
           </div>
         </div>
       ) : (
-        <AddSystemThumbnailForm equipment={equipment} />
+        <>
+          <div className="relative w-full bg-white border border-gray-200 rounded p-4">
+            <div className="relative w-full h-[230px] flex items-center justify-center overflow-hidden">
+              <Image
+                src={`/no_image.png`}
+                fill
+                alt={equipment.model}
+                unoptimized={true}
+                className="object-contain p-2"
+              />
+            </div>
+          </div>
+          <AddSystemThumbnailForm equipment={equipment} />
+        </>
       )}
     </>
   );
