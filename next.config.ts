@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const mode = process.env.NODE_ENV !== "development" ? "/equipmentobs" : "";
+const mode = process.env.NODE_ENV !== "development" ? "/equipmentobs" : "/";
 
 const nextConfig: NextConfig = {
   experimental: {
