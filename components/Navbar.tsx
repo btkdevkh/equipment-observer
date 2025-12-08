@@ -1,11 +1,13 @@
 import Image from "next/image";
 
+const mode = process.env.NODE_ENV !== "development" ? "/equipmentobs" : "";
+
 const Navbar = () => {
   return (
     <>
       <div className="flex justify-center">
         <Image
-          src={`/robot.png`}
+          src={`${mode}/robot.png`}
           width={200}
           height={200}
           alt="Logo"
