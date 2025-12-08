@@ -20,7 +20,7 @@ const changeDate = async (equipment: IEquipment, formData: FormData) => {
   }
 
   // Get exists Nb liters
-  const filePath = path.resolve(process.cwd(), "data.json");
+  const filePath = path.join(process.cwd(), "data.json");
   const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
   const equipments = JSON.parse(jsonData) as Equipments;
 

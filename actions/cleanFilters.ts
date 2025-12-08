@@ -14,7 +14,7 @@ const cleanFilters = async (equipment: IEquipment, formData: FormData) => {
   }
 
   // Get exists file
-  const filePath = path.resolve(process.cwd(), "data.json");
+  const filePath = path.join(process.cwd(), "data.json");
   const jsonData = fs.readFileSync(filePath, { encoding: "utf8" });
   const equipments = JSON.parse(jsonData) as Equipments;
 

@@ -1,12 +1,13 @@
 "use server";
 
 import fs from "fs";
-import fsPromise from "fs/promises";
 import path from "path";
+import fsPromise from "fs/promises";
 import { Equipments } from "@/types/Equipment";
 
 const getEquipments = async () => {
-  const filePath = path.resolve(process.cwd(), "data.json");
+  const filePath = path.join(process.cwd(), "data.json");
+
   // Read existing file content
   let data: Equipments = { equipments: [] };
   if (fs.existsSync(filePath)) {

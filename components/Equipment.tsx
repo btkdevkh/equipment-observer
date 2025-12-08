@@ -1,4 +1,3 @@
-import { IoMdAdd } from "react-icons/io";
 import { MdOutlineDateRange } from "react-icons/md";
 import { GiDuration } from "react-icons/gi";
 import { TiHeartFullOutline } from "react-icons/ti";
@@ -8,7 +7,7 @@ import AddLitersForm from "./waterFilterSystem/AddLitersForm";
 import ChangeFiltersForm from "./waterFilterSystem/ChangeFiltersForm";
 import CleanFiltersForm from "./waterFilterSystem/CleanFiltersForm";
 import StatusIndicator from "./StatusIndicator";
-import ChangeDateForm from "./ChangeDateForm";
+import ChangeDateForm from "./forms/ChangeDateForm";
 import { HiMiniCpuChip } from "react-icons/hi2";
 import {
   getCurrentDate,
@@ -28,14 +27,9 @@ const ICON_SIZE = 25;
 
 const Equipment = ({ equipment, index }: EquipmentProps) => {
   return (
-    <div className="border border-[#37436a] p-3 flex flex-col justify-between h-fit">
-      <div className="flex flex-col gap-3 py-3 relative w-full">
-        <span className="absolute top-2 -left-1 border-2 border-[#7FEBF8] bg-[#1a3b4f] h-7 w-7 rounded-full flex items-center justify-center">
-          <small>{index}</small>
-        </span>
-
+    <div className="border border-[#37436a] p-3 flex gap-3 flex-col justify-between rounded">
+      <div className="flex flex-col gap-3 w-full">
         <div className="h-[3rem] flex justify-around items-center gap-3 text-2xl">
-          {/* Indicator */}
           <StatusIndicator equipment={equipment} />
         </div>
 
@@ -176,8 +170,10 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
         )}
 
         {equipment.nextDescalingDate &&
-          (equipment.category === getKeyFromKey(Category, Category.COFFEE_MACHINE) ||
-           equipment.category === getKeyFromKey(Category, Category.KETTLE)) && (
+          (equipment.category ===
+            getKeyFromKey(Category, Category.COFFEE_MACHINE) ||
+            equipment.category ===
+              getKeyFromKey(Category, Category.KETTLE)) && (
             <div className="flex items-center gap-3">
               <MdOutlineDateRange size={ICON_SIZE} />
               <p>
@@ -256,20 +252,14 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
                       </em>
                     </p>
                   </div>
-                  <div className="flex flex-col gap-1 border border-[#37436a] p-2 w-fit rounded">
-                    <div className="flex items-center gap-3">
-                      <RiDrinks2Fill size={ICON_SIZE} />
-                      <p>
-                        Déjà consommés :{" "}
-                        <em>
-                          <strong>{equipment.litersUsed ?? 0} litres</strong>
-                        </em>
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <IoMdAdd size={ICON_SIZE} />
-                      <AddLitersForm equipment={equipment} />
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <RiDrinks2Fill size={ICON_SIZE} />
+                    <p>
+                      Déjà consommés :{" "}
+                      <em>
+                        <strong>{equipment.litersUsed ?? 0} litres</strong>
+                      </em>
+                    </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <GiDuration size={ICON_SIZE} />
@@ -375,6 +365,9 @@ const Equipment = ({ equipment, index }: EquipmentProps) => {
                       </em>
                     </p>
                   </div>
+                </div>
+                <div className="flex items-center gap-3 border border-[#37436a] p-2 rounded">
+                  <AddLitersForm equipment={equipment} />
                 </div>
               </>
             )}

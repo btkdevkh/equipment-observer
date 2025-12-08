@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const mode = process.env.NODE_ENV !== "development" ? "/equipmentobs" : "";
+
 const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
@@ -7,12 +9,11 @@ const nextConfig: NextConfig = {
     },
   },
   // IMPORTANT pour servir l'app dans /equipmentobs
-  basePath: "/equipmentobs",
-  assetPrefix: "/equipmentobs",
+  basePath: mode,
+  assetPrefix: mode,
   images: {
-    unoptimized: true,
-    // loader: "default", // ou 'imgix', 'cloudinary', etc.
-    // path: "/equipmentobs/", // permet d'utiliser des images depuis /public
+    loader: "default", // ou 'imgix', 'cloudinary', etc.
+    path: mode, // permet d'utiliser des images depuis /public
   },
 };
 

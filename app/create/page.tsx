@@ -1,4 +1,4 @@
-import AddSystemForm from "@/components/AddSystemForm";
+import AddSystemForm from "@/components/forms/AddSystemForm";
 import BackButton from "@/components/BackButton";
 import HeadingTitle from "@/components/HeadingTitle";
 

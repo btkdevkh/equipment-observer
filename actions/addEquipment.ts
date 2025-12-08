@@ -47,7 +47,7 @@ const addEquipment = async (formData: FormData) => {
   }
 
   // Get exists json file
-  const filePath = path.resolve(process.cwd(), "data.json");
+  const filePath = path.join(process.cwd(), "data.json");
 
   const newEquipment: IEquipment = {
     id: crypto.randomUUID(),

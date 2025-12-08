@@ -1,6 +1,6 @@
 import HeadingTitle from "@/components/HeadingTitle";
 import Equipment from "@/components/Equipment";
-import AddSystemForm from "@/components/AddSystemForm";
+import AddSystemForm from "@/components/forms/AddSystemForm";
 import AppDatetime from "@/components/AppDatetime";
 import MoreInfo from "@/components/MoreInfo";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default async function Home() {
       <div className="max-w-[1024px] mx-auto">
         <div className="max-w-[524px] mx-auto">
           {/* Title */}
-          <HeadingTitle title="« Vous venez d'acquérir votre appareil / système, ajoutez-le au programme pour un meilleur suivi. »" />
+          <HeadingTitle title="Vous venez d'acquérir votre appareil / système, ajoutez-le au programme pour un meilleur suivi" />
           <br />
 
           <div className="ml-1 flex flex-col gap-5">
@@ -37,13 +37,12 @@ export default async function Home() {
     <div className="max-w-full mx-auto">
       <>
         {/* Title */}
-        <HeadingTitle title="« L'état de votre systèmes / appareils. »" />
-        <br />
+        <div className="flex items-center gap-2 rounded mb-3">
+          <HeadingTitle title="L'état de votre systèmes / appareils" />
+          <AppDatetime initialDate={new Date().toISOString()} />
+        </div>
 
         <div className="ml-1 flex flex-col gap-3">
-          {/* Datetime */}
-          <AppDatetime initialDate={new Date().toISOString()} />
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
             {sortedEquipmentsByDateStrDESC.map((equipment, index) => (
               <Equipment
