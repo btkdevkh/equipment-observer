@@ -17,6 +17,7 @@ import {
   parseDateFR,
 } from "@/functions/functions";
 import Thumbnail from "./Thumbnail";
+import DeleteSystemForm from "./forms/DeleteSystemForm";
 
 type EquipmentProps = {
   equipment: IEquipment;
@@ -25,12 +26,13 @@ type EquipmentProps = {
 
 const ICON_SIZE = 25;
 
-const Equipment = ({ equipment, index }: EquipmentProps) => {
+const Equipment = ({ equipment }: EquipmentProps) => {
   return (
     <div className="border border-[#37436a] p-3 flex gap-3 flex-col justify-between rounded">
       <div className="flex flex-col gap-3 w-full">
-        <div className="h-[3rem] flex justify-around items-center gap-3 text-2xl">
+        <div className="h-[3rem] flex justify-around items-center gap-3 text-2xl relative">
           <StatusIndicator equipment={equipment} />
+          <DeleteSystemForm equipment={equipment} />
         </div>
 
         <div className="flex flex-col gap-1">
